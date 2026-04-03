@@ -4,4 +4,6 @@ export class CreateUserDto {
   email: string;
   password: string;
   avatar?: string;
+  birthDate: Date;
+  rating: number;
 }
