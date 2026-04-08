@@ -7,10 +7,10 @@ import {
   IsOptional,
   IsString,
   IsUrl,
+  Length,
   Max,
   MaxLength,
   Min,
-  MinLength,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -20,8 +20,8 @@ export class CreateUserDto {
   name: string;
 
   @IsString()
-  @MaxLength(20)
-  @MinLength(3)
+  @IsNotEmpty()
+  @Length(3, 20)
   username: string;
 
   @IsEmail()
@@ -30,8 +30,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
-  @MinLength(6)
-  @MaxLength(50)
+  @Length(6, 50)
   password: string;
 
   @IsOptional()
@@ -48,4 +47,8 @@ export class CreateUserDto {
   @Min(0)
   @Max(10)
   rating: number;
+
+  @IsString()
+  @Length(8, 8)
+  cep: string;
 }

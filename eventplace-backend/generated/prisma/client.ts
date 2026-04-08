@@ -44,8 +44,3 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
-/**
- * Model Localization
- * 
- */
-export type Localization = Prisma.LocalizationModel

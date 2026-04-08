@@ -384,8 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User',
-  Localization: 'Localization'
+  User: 'User'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +400,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "localization"
+    modelProps: "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -479,80 +478,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Localization: {
-      payload: Prisma.$LocalizationPayload<ExtArgs>
-      fields: Prisma.LocalizationFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.LocalizationFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.LocalizationFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        findFirst: {
-          args: Prisma.LocalizationFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.LocalizationFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        findMany: {
-          args: Prisma.LocalizationFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>[]
-        }
-        create: {
-          args: Prisma.LocalizationCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        createMany: {
-          args: Prisma.LocalizationCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.LocalizationCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>[]
-        }
-        delete: {
-          args: Prisma.LocalizationDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        update: {
-          args: Prisma.LocalizationUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        deleteMany: {
-          args: Prisma.LocalizationDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.LocalizationUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.LocalizationUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>[]
-        }
-        upsert: {
-          args: Prisma.LocalizationUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocalizationPayload>
-        }
-        aggregate: {
-          args: Prisma.LocalizationAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateLocalization>
-        }
-        groupBy: {
-          args: Prisma.LocalizationGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LocalizationGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.LocalizationCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LocalizationCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -602,25 +527,11 @@ export const UserScalarFieldEnum = {
   avatar: 'avatar',
   rating: 'rating',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  cep: 'cep'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const LocalizationScalarFieldEnum = {
-  id: 'id',
-  cep: 'cep',
-  street: 'street',
-  city: 'city',
-  state: 'state',
-  country: 'country',
-  number: 'number',
-  complement: 'complement',
-  userId: 'userId'
-} as const
-
-export type LocalizationScalarFieldEnum = (typeof LocalizationScalarFieldEnum)[keyof typeof LocalizationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -804,7 +715,6 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
-  localization?: Prisma.LocalizationOmit
 }
 
 /* Types for Logging */

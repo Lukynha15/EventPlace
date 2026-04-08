@@ -1,4 +1,6 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import { firstValueFrom } from 'rxjs';
 import { UserAlreadyExistsException } from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
 import { hashPassword } from 'src/utils/hash.password';
@@ -7,7 +9,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private readonly httpService: HttpService,
+  ) {}
+
   async create(createUserDto: CreateUserDto) {
     const userExists = await this.prisma.user.findUnique({
       where: {
@@ -20,6 +26,12 @@ export class UserService {
       throw new UserAlreadyExistsException();
     }
 
+    await firstValueFrom(
+      this.httpService.get(
+        `https://viacep.com.br/ws/${createUserDto.cep}/json`,
+      ),
+    );
+
     await this.prisma.user.create({
       data: {
         name: createUserDto.name,
@@ -29,13 +41,14 @@ export class UserService {
         birthDate: createUserDto.birthDate,
         avatar: createUserDto.avatar,
         rating: createUserDto.rating,
+        cep: createUserDto.cep,
       },
     });
 
     return 'Usuário criado com sucesso!';
   }
 
-  findAll() {
+  findAllUser() {
     return `This action returns all user`;
   }
 
