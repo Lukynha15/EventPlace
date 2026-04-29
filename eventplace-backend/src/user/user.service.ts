@@ -48,12 +48,9 @@ export class UserService {
     return 'Usuário criado com sucesso!';
   }
 
-  findAllUser() {
-    return `This action returns all user`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    await this.prisma.user.findUnique({ where: { id } });
+    return `Este é o #${id} user`;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -62,6 +59,6 @@ export class UserService {
 
   async remove(id: string) {
     await this.prisma.user.delete({ where: { id } });
-    return `This action removes a #${id} user`;
+    return `Excluído com sucesso!`;
   }
 }
