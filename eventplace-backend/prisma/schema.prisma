@@ -21,20 +21,33 @@ model User {
   updatedAt DateTime @updatedAt
   cep       String
 
-  // localizations Localization[]
+  events  Event[]
+  tickets Ticket[]
+
 }
 
-// model Localization {
-//   id     String @id @default(uuid())
-//   cep    String
-//   street String
-//   city   String
-//   state  String
-//   country String
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  startAt     DateTime
+  endAt       DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-//   number String
-//   complement String?
+  cep     String
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
+  tickets Ticket[]
+}
 
-//   userId String
-//   user   User @relation(fields: [userId], references: [id])
-// }
+model Ticket {
+  id        String   @id @default(uuid())
+  price     Float
+  quantity  Int
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
