@@ -1,3 +1,4 @@
+import heroImage from '@/assets/hero.png'
 import loginImage from '@/assets/login-image.jpg'
 import {
   LoginField,
@@ -22,7 +23,8 @@ export function Login() {
       imagePanel={
         <LoginImagePanel
           imageSrc={loginImage}
-          title={<>Encontre seu próximo <span className="text-[#7C3AED] font-bold">evento</span> sem perder tempo.</>} 
+          imageSrcs={[loginImage, heroImage]}
+          title={<>Encontre seu próximo <span className="text-[#7C3AED] font-bold">evento</span> sem perder tempo.</>}
         />
       }
     >
